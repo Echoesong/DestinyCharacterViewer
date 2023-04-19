@@ -7,11 +7,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Header</title>
+    {% load django_simple_bulma %}
+    {% bulma %}
+    {% font_awesome %}
+
+
 </head>
 
 <nav>
-    <li><a href="{% url 'signup' %}">Sign Up</a></li>
-    <li><a href="{% url 'login' %}">Log In</a></li>
+    <a href="{% url 'signup' %}" class="button is-dark">Sign Up</a>
+    <a href="{% url 'login' %}" class="button is-success">Log In</a>
 </nav>
 
 <body>
