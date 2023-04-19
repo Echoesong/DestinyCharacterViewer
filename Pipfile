@@ -8,6 +8,7 @@ psycopg2-binary = "*"
 django-heroku = "*"
 gunicorn = "*"
 django-oauth-toolkit = "*"
+django-simple-bulma = "*"
 
 [dev-packages]
 
