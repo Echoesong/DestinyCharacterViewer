@@ -22,6 +22,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-$sbyh_z%agm3is^9jxo*^$9kyoy6@wbmh%3^35hnb&y^%ki&xe'
 
+# Bungie API stuff:
+
+BUNGIE_CLIENT_ID = '43936'
+BUNGIE_REDIRECT_URI = 'localhost:8000/callback'
+BUNGIE_AUTHORIZATION_URL = 'https://www.bungie.net/en/OAuth/Authorize'
+BUNGIE_TOKEN_URL = 'https://www.bungie.net/platform/app/oauth/token/'
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -32,6 +39,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'main_app',
+    'oauth2_provider',
     'django_simple_bulma',
     'django.contrib.admin',
     'django.contrib.auth',
