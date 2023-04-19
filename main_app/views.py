@@ -1,17 +1,14 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
-<<<<<<< HEAD
 #Oauth 2.0 stuff:
 from django.http import HttpResponseRedirect
 from django.conf import settings
 import uuid
 import requests
 from django.http import JsonResponse
-=======
 from django.contrib.auth.decorators import login_required
 from .models import *
->>>>>>> 9b79a0d7fd1f1f9ad12e574b2a58201d8add9191
 
 # Create your views here.
 
@@ -27,7 +24,7 @@ def signup(request):
     if form.is_valid():
       # This will add the user to the database
       user = form.save()
-      Profile.objects.create(user=user)
+      
       # This is how we log a user in via code
       login(request, user)
       return redirect('home')
@@ -38,7 +35,6 @@ def signup(request):
   context = {'form': form, 'error_message': error_message}
   return render(request, 'registration/signup.html', context)
 
-<<<<<<< HEAD
 def bungie_auth(request):
   state = uuid.uuid4()
   request.session['bungie_auth_state'] = str(state)
@@ -46,6 +42,7 @@ def bungie_auth(request):
   return HttpResponseRedirect(auth_url)
 
 def bungie_callback(request):
+    print('Bungie callback')
     code = request.GET.get('code')
     state = request.GET.get('state')
     stored_state = request.session.get('bungie_auth_state')
@@ -61,14 +58,13 @@ def bungie_callback(request):
     }
     response = requests.post(settings.BUNGIE_TOKEN_URL, data=data)
     token_data = response.json()
+    print(token_data)
 
-# 
-    return JsonResponse(token_data)
+    # Profile.objects.create(user=user)
+    return redirect('home')
 
-=======
 
 @login_required
 def profile(request):
   user_profile = Profile.objects.filter(user=request.user)
   return render(request, 'registration/profile.html', {'user_profile': user_profile})
->>>>>>> 9b79a0d7fd1f1f9ad12e574b2a58201d8add9191

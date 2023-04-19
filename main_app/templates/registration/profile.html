@@ -2,8 +2,8 @@
 {%block content%}
 
 <h1>Hi</h1>
-<p>The linked user is:{{ user_profile }}</p>
 
-<a class="button is-large is-danger" href="">Link your Bungie account Here</a>
+
+<a class="button is-large is-danger" href="{% url 'bungie_auth'%}">Link your Bungie account Here</a>
 
 {% endblock%}
