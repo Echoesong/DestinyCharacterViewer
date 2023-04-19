@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.decorators import login_required
+from .models import *
 
 # Create your views here.
 
@@ -16,6 +18,7 @@ def signup(request):
     if form.is_valid():
       # This will add the user to the database
       user = form.save()
+      Profile.objects.create(user=user)
       # This is how we log a user in via code
       login(request, user)
       return redirect('home')
@@ -25,3 +28,9 @@ def signup(request):
   form = UserCreationForm()
   context = {'form': form, 'error_message': error_message}
   return render(request, 'registration/signup.html', context)
+
+
+@login_required
+def profile(request):
+  user_profile = Profile.objects.filter(user=request.user)
+  return render(request, 'registration/profile.html', {'user_profile': user_profile})
