@@ -5,19 +5,7 @@ from enum import Enum
 # Create your models here.
 
 SUBCLASSES = ('Solar', 'Void', 'Arc', 'Stasis', 'Strand') 
-    
 
-class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    access_token = models.CharField(max_length=255)
-    token_type = models.CharField(max_length=255)
-    expires_in = models.IntegerField()
-    refresh_token = models.CharField(max_length=255, null=True, blank=True)  # This is for confidential clients only
-    membership_id = models.CharField(max_length=255)
-
-    def __str__(self):
-        return f"belongs to {self.user}"
-    
 WEAPON_SLOTS = (
     ('Kin', 'Kinetic'),
     ('En', 'Energy'),
@@ -31,10 +19,22 @@ ARMOR_SLOTS = (
     ('L', 'Legs'),
     ('Cl', 'Class')
 )
+    
 
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    access_token = models.CharField(max_length=255)
+    token_type = models.CharField(max_length=255)
+    expires_in = models.IntegerField()
+    refresh_token = models.CharField(max_length=255, null=True, blank=True)  # This is for confidential clients only
+    membership_id = models.CharField(max_length=255)
+
+    def __str__(self):
+        return f"belongs to {self.user}"
+   
 
 class Weapon(models.Model):
-    id = models.IntegerField
+    bungie_api_item_instance_id = models.IntegerField
     # user_id = models.ForeignKey(User, on_delete=models.CASCADE)
     # instance_id = models.IntegerField()
     name = models.CharField(max_length=100)
@@ -46,7 +46,7 @@ class Weapon(models.Model):
         return self.name
 
 class Armor(models.Model):
-    id = models.IntegerField
+    bungie_api_item_instance_id = models.IntegerField
     # user_id = models.ForeignKey(User, on_delete=models.CASCADE)
     # instance_id = models.IntegerField()
     name = models.CharField(max_length=100)
@@ -66,6 +66,9 @@ class Ability(models.Model):
     subclass = models.CharField(max_length=6,
                             choices = SUBCLASSES,
                             default = SUBCLASSES[0])
+    
+    def __str__(self):
+        return self.name
 
 
 class Loadout(models.Model):
@@ -81,4 +84,7 @@ class Loadout(models.Model):
     armor_chest = models.ForeignKey(Armor)
     armor_legs = models.ForeignKey(Armor)
     armor_class = models.ForeignKey(Armor)
+
+    def __str__(self):
+        return self.name
 
