@@ -1,0 +1,1 @@
+web: gunicorn destiny_loadout_manager.wsgi
