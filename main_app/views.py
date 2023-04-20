@@ -58,10 +58,18 @@ def bungie_callback(request):
     }
     response = requests.post(settings.BUNGIE_TOKEN_URL, data=data)
     token_data = response.json()
+    membership_id = token_data["membership_id"]
+    # Possibly: check if the BungieID exists in our database, if so, don't create/route back. if NOT present, continue below
+    # Use token data to make a second request from Bungie API, then create profile
+
+    response2 = requests.get(f'https://www.bungie.net/Platform/Destiny2/3/Profile/{membership_id}/LinkedProfiles', headers={'x-api-key': settings.BUNGIE_API_KEY})
     
+    destiny2_data = response2.json()
     # NOTE: Eventually need to handle edge case of when existing user tries to connect
-    Profile.objects.create(user=request.user, access_token=token_data['access_token'], token_type=token_data['token_type'], expires_in=token_data['expires_in'], membership_id=token_data['membership_id'])
+    # Profile.objects.create(user=request.user, access_token=token_data['access_token'], token_type=token_data['token_type'], expires_in=token_data['expires_in'], membership_id=token_data['membership_id'], destiny2_membership_id=destiny2_data['profiles'][0]['membershipId'])
+    print(destiny2_data)
     print('Request resolved')
+    # Instead of redirecting to home, chain this request with the request to get destinyMembershipId
     return redirect('home')
 
 
@@ -69,3 +77,17 @@ def bungie_callback(request):
 def profile(request):
   user_profile = Profile.objects.filter(user=request.user)
   return render(request, 'registration/profile.html', {'user_profile': user_profile})
+
+
+# def characters_create(request):
+#   # NOTE: 
+#   user_profile = Profile.objects.filter(user=request.user)
+  
+#   response = request.GET.get('https://www.bungie.net/Platform/Destiny2/3/Profile/{user_profile['membership_id']}/LinkedProfiles')
+#   pass
+
+# def characters_index(request):
+   
+#    characters = Character.objects.filter(user=request.user)
+
+#    return render(request, 'characters/index.html', {'characters': characters})

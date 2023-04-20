@@ -28,6 +28,13 @@ BUNGIE_CLIENT_ID = '43936'
 BUNGIE_REDIRECT_URI = 'localhost:8000/callback'
 BUNGIE_AUTHORIZATION_URL = 'https://www.bungie.net/en/OAuth/Authorize'
 BUNGIE_TOKEN_URL = 'https://www.bungie.net/platform/app/oauth/token/'
+BUNGIE_API_KEY = 'ad439cf664624a52a4ea3f54f1b0af30'
+
+
+
+
+
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
