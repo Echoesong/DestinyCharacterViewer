@@ -109,5 +109,4 @@ dist
 # SSL
 key.pem
 cert.pem
-
-"cert"
+key.pem

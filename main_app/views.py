@@ -59,9 +59,10 @@ def bungie_callback(request):
     response = requests.post(settings.BUNGIE_TOKEN_URL, data=data)
     print(response)
     token_data = response.json()
-    print(token_data)
-
-    # Profile.objects.create(user=user)
+    
+    # NOTE: Eventually need to handle edge case of when existing user tries to connect
+    Profile.objects.create(user=request.user, access_token=token_data['access_token'], token_type=token_data['token_type'], expires_in=token_data['expires_in'], membership_id=token_data['membership_id'])
+    print('Request resolved')
     return redirect('home')
 
 

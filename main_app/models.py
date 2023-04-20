@@ -5,7 +5,19 @@ from enum import Enum
 # Create your models here.
 
 SUBCLASSES = ('Solar', 'Void', 'Arc', 'Stasis', 'Strand') 
+    
 
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    access_token = models.CharField(max_length=500)
+    token_type = models.CharField(max_length=500)
+    expires_in = models.IntegerField()
+     
+    membership_id = models.CharField(max_length=500)
+
+    def __str__(self):
+        return f"belongs to {self.user}"
+    
 WEAPON_SLOTS = (
     ('Kin', 'Kinetic'),
     ('En', 'Energy'),
@@ -81,6 +93,9 @@ class Armor(models.Model):
 #     armor_chest = models.ForeignKey(Armor)
 #     armor_legs = models.ForeignKey(Armor)
 #     armor_class = models.ForeignKey(Armor)
+
+    # def __str__(self):
+    #     return self.name
 
     def __str__(self):
         return self.name
