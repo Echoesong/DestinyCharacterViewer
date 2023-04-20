@@ -57,6 +57,7 @@ def bungie_callback(request):
         
     }
     response = requests.post(settings.BUNGIE_TOKEN_URL, data=data)
+    print(response)
     token_data = response.json()
     print(token_data)
 

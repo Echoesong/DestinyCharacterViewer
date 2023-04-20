@@ -107,5 +107,7 @@ dist
 .env
 
 # SSL
-cert.pem
 key.pem
+cert.pem
+
+"cert"
