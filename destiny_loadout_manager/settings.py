@@ -40,6 +40,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'main_app',
     'oauth2_provider',
+    'django_extensions',
     'django_simple_bulma',
     'django.contrib.admin',
     'django.contrib.auth',

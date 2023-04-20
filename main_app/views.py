@@ -54,6 +54,7 @@ def bungie_callback(request):
         "grant_type": "authorization_code",
         "code": code,
         "client_id": settings.BUNGIE_CLIENT_ID,
+        
     }
     response = requests.post(settings.BUNGIE_TOKEN_URL, data=data)
     token_data = response.json()
