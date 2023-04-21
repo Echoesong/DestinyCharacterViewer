@@ -14,6 +14,7 @@ class Profile(models.Model):
     expires_in = models.IntegerField()
      
     membership_id = models.CharField(max_length=500)
+    destiny2_membership_id = models.CharField(max_length=500)
 
     def __str__(self):
         return f"belongs to {self.user}"
