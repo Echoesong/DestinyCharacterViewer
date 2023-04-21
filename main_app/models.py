@@ -4,7 +4,7 @@ from enum import Enum
 
 # Create your models here.
 
-SUBCLASSES = ('Solar', 'Void', 'Arc', 'Stasis', 'Strand') 
+
     
 
 class Profile(models.Model):
@@ -19,67 +19,25 @@ class Profile(models.Model):
     def __str__(self):
         return f"belongs to {self.user}"
     
-WEAPON_SLOTS = (
-    ('Kin', 'Kinetic'),
-    ('En', 'Energy'),
-    ('Hev', 'Heavy')
-)
+# class Race:
+#     name = models.CharField(max_length=100)
+#     description = models.CharField(max_length=1000)
 
-ARMOR_SLOTS = (
-    ('H', 'Kinetic'),
-    ('A', 'Arms'),
-    ('Ch', 'Chest'),
-    ('L', 'Legs'),
-    ('Cl', 'Class')
-)
+# class Class:
+#     name = models.CharField(max_length=100)
+#     description = models.CharField(max_length=1000)
 
-
-class Weapon(models.Model):
-    id = models.IntegerField
-    # user_id = models.ForeignKey(User, on_delete=models.CASCADE)
-    # instance_id = models.IntegerField()
-    name = models.CharField(max_length=100)
-    icon = models.CharField(max_length=100)
-    # NOTE: default probably doesn't work for the app, as defaulting to that index location is nonsensical. Keeping for now
-    slot = models.CharField(max_length=3, choices=WEAPON_SLOTS, default=WEAPON_SLOTS[0][0])
-
-    def __str__(self):
-        return self.name
-
-class Armor(models.Model):
-    id = models.IntegerField
-    # user_id = models.ForeignKey(User, on_delete=models.CASCADE)
-    # instance_id = models.IntegerField()
-    name = models.CharField(max_length=100)
-    icon = models.CharField(max_length=100)
-    # NOTE: ref: note in class Weapon
-    slot = models.CharField(max_length=100, choices=ARMOR_SLOTS, default=ARMOR_SLOTS[0][0])
-
-    def __str__(self):
-      return self.name
-    
+# class Character(models.Model):
+#     user = models.OneToOneField(User, on_delete=models.CASCADE)
+#     light = models.IntegerField()
+#     total_minutes = models.IntegerField()
+#     session_minutes = models.IntegerField()
+#     last_played = models.DateField()
+#     emblem_icon = models.CharField(max_length=500)
+#     emblem_background = models.CharField(max_length=500)
+#     race_type = models.ForeignKey(Race, on_delete=models.CASCADE)
+#     class_type = models.ForeignKey(Class, on_delete=models.CASCADE)
 
 
-# class Ability(models.Model):
-#     bungie_api_ability_id = models.IntegerField()
-#     name = models.CharField(max_length=255)
-#     icon = models.CharField(max_length=255)
-#     subclass = models.CharField(max_length=6,
-#                             choices = SUBCLASSES,
-#                             default = SUBCLASSES[0])
 
-
-# class Loadout(models.Model):
-#     character_id = models.ForeignKey(Character, on_delete=models.CASCADE)
-#     name = models.CharField(max_length=255)
-#     abilities = models.ManyToManyField(Ability)
-#     #there is no on_delete, do we need a different method than cascade for this?
-#     weapon_kinetic = models.ForeignKey(Weapon)
-#     weapon_energy = models.ForeignKey(Weapon)
-#     weapon_heavy = models.ForeignKey(Weapon)
-#     armor_head = models.ForeignKey(Armor)
-#     armor_shoulder = models.ForeignKey(Armor)
-#     armor_chest = models.ForeignKey(Armor)
-#     armor_legs = models.ForeignKey(Armor)
-#     armor_class = models.ForeignKey(Armor)
 
