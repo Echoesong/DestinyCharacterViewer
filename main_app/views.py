@@ -60,6 +60,8 @@ def bungie_callback(request):
     print(response)
     token_data = response.json()
     membership_id = token_data["membership_id"]
+    bearer = token_data['token_type']
+    token = token_data['access_token']
     # Possibly: check if the BungieID exists in our database, if so, don't create/route back. if NOT present, continue below
     # Use token data to make a second request from Bungie API, then create profile
 
@@ -67,8 +69,21 @@ def bungie_callback(request):
     
     destiny2_data = response2.json()
     # NOTE: Eventually need to handle edge case of when existing user tries to connect
-    # Profile.objects.create(user=request.user, access_token=token_data['access_token'], token_type=token_data['token_type'], expires_in=token_data['expires_in'], membership_id=token_data['membership_id'], destiny2_membership_id=destiny2_data['profiles'][0]['membershipId'])
-    print(destiny2_data)
+    destiny2_membership_id = destiny2_data['Response']['profiles'][0]['membershipId']
+    Profile.objects.create(
+       user=request.user, 
+       access_token=token_data['access_token'], 
+       token_type=token_data['token_type'], 
+       expires_in=token_data['expires_in'], 
+       membership_id=token_data['membership_id'], 
+       destiny2_membership_id=destiny2_membership_id)
+    
+    
+
+    response3 = requests.get(f'https://www.bungie.net/Platform/Destiny2/3/Profile/{destiny2_membership_id}', headers={'x-api-key': settings.BUNGIE_API_KEY, 'Authorization': f'Bearer {token}'}, params={'components': 'profileinventories'})
+    print(response3.json())
+
+
     print('Request resolved')
     # Instead of redirecting to home, chain this request with the request to get destinyMembershipId
     return redirect('home')
