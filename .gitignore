@@ -105,3 +105,9 @@ dist
 
 # ENV file
 .env
+
+# SSL
+
+key.pem
+
+cert.pem

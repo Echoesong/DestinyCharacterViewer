@@ -5,6 +5,9 @@ name = "pypi"
 
 [packages]
 psycopg2-binary = "*"
+django-extensions = "*"
+werkzeug = "*"
+pyopenssl = "*"
 django-heroku = "*"
 gunicorn = "*"
 django-oauth-toolkit = "*"
