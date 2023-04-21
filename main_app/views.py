@@ -42,6 +42,14 @@ def bungie_auth(request):
   return HttpResponseRedirect(auth_url)
 
 def bungie_callback(request):
+    race1 = Race.objects.get(id=1)
+    race2 = Race.objects.get(id=2)
+    race3 = Race.objects.get(id=3)
+
+    class1 = Class.objects.get(id=1)
+    class2 = Class.objects.get(id=2)
+    class3 = Class.objects.get(id=3)
+
     print('Bungie callback')
     code = request.GET.get('code')
     state = request.GET.get('state')
@@ -83,7 +91,46 @@ def bungie_callback(request):
     
     parsed = response3.json()
     characters = parsed['Response']['characters']['data']
-    print(characters)
+    character_id_list = characters.keys()
+
+    
+
+    for key in character_id_list:
+        character_data = characters[key]
+        if character_data['raceType'] == 0:
+           character_race = race1
+        elif character_data['raceType'] == 1:
+           character_race = race2
+        elif character_data['raceType'] == 2:
+           character_race = race3
+
+        if character_data['classType'] == 0:
+           character_class = class1
+        elif character_data['classType'] == 1:
+           character_class = class2
+        elif character_data['classType'] == 2:
+           character_class = class3
+
+
+
+
+        Character.objects.create(
+            user = request.user,
+            light = character_data['light'],
+            total_minutes = character_data['minutesPlayedTotal'],
+            session_minutes = character_data['minutesPlayedThisSession'],
+            last_played = character_data['dateLastPlayed'],
+            emblem_icon = character_data['emblemPath'],
+            emblem_background = character_data['emblemBackgroundPath'],
+            race_type = character_race,
+            class_type = character_class
+
+        )
+
+        
+
+
+    
 
     print('Request resolved')
     # Instead of redirecting to home, chain this request with the request to get destinyMembershipId
