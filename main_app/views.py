@@ -81,7 +81,8 @@ def bungie_callback(request):
 
     response3 = requests.get(f'https://www.bungie.net/Platform/Destiny2/3/Profile/{destiny2_membership_id}', headers={'x-api-key': settings.BUNGIE_API_KEY, 'Authorization': f'Bearer {token}'}, params={'components': 'characters'})
     
-    characters = response3['Response']['characters']['data']
+    parsed = response3.json()
+    characters = parsed['Response']['characters']['data']
     print(characters)
 
     print('Request resolved')

@@ -19,44 +19,44 @@ class Profile(models.Model):
     def __str__(self):
         return f"belongs to {self.user}"
     
-WEAPON_SLOTS = (
-    ('Kin', 'Kinetic'),
-    ('En', 'Energy'),
-    ('Hev', 'Heavy')
-)
+# WEAPON_SLOTS = (
+#     ('Kin', 'Kinetic'),
+#     ('En', 'Energy'),
+#     ('Hev', 'Heavy')
+# )
 
-ARMOR_SLOTS = (
-    ('H', 'Kinetic'),
-    ('A', 'Arms'),
-    ('Ch', 'Chest'),
-    ('L', 'Legs'),
-    ('Cl', 'Class')
-)
+# ARMOR_SLOTS = (
+#     ('H', 'Kinetic'),
+#     ('A', 'Arms'),
+#     ('Ch', 'Chest'),
+#     ('L', 'Legs'),
+#     ('Cl', 'Class')
+# )
 
 
-class Weapon(models.Model):
-    id = models.IntegerField
-    # user_id = models.ForeignKey(User, on_delete=models.CASCADE)
-    # instance_id = models.IntegerField()
-    name = models.CharField(max_length=100)
-    icon = models.CharField(max_length=100)
-    # NOTE: default probably doesn't work for the app, as defaulting to that index location is nonsensical. Keeping for now
-    slot = models.CharField(max_length=3, choices=WEAPON_SLOTS, default=WEAPON_SLOTS[0][0])
+# class Weapon(models.Model):
+#     id = models.IntegerField
+#     # user_id = models.ForeignKey(User, on_delete=models.CASCADE)
+#     # instance_id = models.IntegerField()
+#     name = models.CharField(max_length=100)
+#     icon = models.CharField(max_length=100)
+#     # NOTE: default probably doesn't work for the app, as defaulting to that index location is nonsensical. Keeping for now
+#     slot = models.CharField(max_length=3, choices=WEAPON_SLOTS, default=WEAPON_SLOTS[0][0])
 
-    def __str__(self):
-        return self.name
+#     def __str__(self):
+#         return self.name
 
-class Armor(models.Model):
-    id = models.IntegerField
-    # user_id = models.ForeignKey(User, on_delete=models.CASCADE)
-    # instance_id = models.IntegerField()
-    name = models.CharField(max_length=100)
-    icon = models.CharField(max_length=100)
-    # NOTE: ref: note in class Weapon
-    slot = models.CharField(max_length=100, choices=ARMOR_SLOTS, default=ARMOR_SLOTS[0][0])
+# class Armor(models.Model):
+#     id = models.IntegerField
+#     # user_id = models.ForeignKey(User, on_delete=models.CASCADE)
+#     # instance_id = models.IntegerField()
+#     name = models.CharField(max_length=100)
+#     icon = models.CharField(max_length=100)
+#     # NOTE: ref: note in class Weapon
+#     slot = models.CharField(max_length=100, choices=ARMOR_SLOTS, default=ARMOR_SLOTS[0][0])
 
-    def __str__(self):
-      return self.name
+#     def __str__(self):
+#       return self.name
     
 
 
