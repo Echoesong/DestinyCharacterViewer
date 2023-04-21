@@ -1,0 +1,18 @@
+{% extends 'base.html'%}
+{%block content%}
+
+<div>
+    {% for weapon in weapons %}
+    <div>{{ weapon.name}} </div>
+    {% endfor %}
+
+</div>
+
+<div>
+    {% for armor in armors %}
+    <div>{{ armor.name}} </div>
+    {% endfor %}
+
+</div>
+
+{% endblock%}
