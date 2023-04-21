@@ -18,26 +18,28 @@ class Profile(models.Model):
 
     def __str__(self):
         return f"belongs to {self.user}"
+      
+ class Race(models.Model):
+    name = models.CharField(max_length=100)
+    description = models.CharField(max_length=1000)
+
+    def __str__(self):
+         return self.name
+
+class Class(models.Model):
+    name = models.CharField(max_length=100)
+    description = models.CharField(max_length=1000)
+
+    def __str__(self):
+            return self.name
     
-# class Race:
-#     name = models.CharField(max_length=100)
-#     description = models.CharField(max_length=1000)
-
-# class Class:
-#     name = models.CharField(max_length=100)
-#     description = models.CharField(max_length=1000)
-
-# class Character(models.Model):
-#     user = models.OneToOneField(User, on_delete=models.CASCADE)
-#     light = models.IntegerField()
-#     total_minutes = models.IntegerField()
-#     session_minutes = models.IntegerField()
-#     last_played = models.DateField()
-#     emblem_icon = models.CharField(max_length=500)
-#     emblem_background = models.CharField(max_length=500)
-#     race_type = models.ForeignKey(Race, on_delete=models.CASCADE)
-#     class_type = models.ForeignKey(Class, on_delete=models.CASCADE)
-
-
-
-
+class Character(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    light = models.IntegerField()
+    total_minutes = models.IntegerField()
+    session_minutes = models.IntegerField()
+    last_played = models.CharField(max_length=255)
+    emblem_icon = models.CharField(max_length=500)
+    emblem_background = models.CharField(max_length=500)
+    race_type = models.ForeignKey(Race, on_delete=models.CASCADE)
+    class_type = models.ForeignKey(Class, on_delete=models.CASCADE)
