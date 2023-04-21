@@ -18,8 +18,8 @@ class Profile(models.Model):
 
     def __str__(self):
         return f"belongs to {self.user}"
-    
-class Race(models.Model):
+      
+ class Race(models.Model):
     name = models.CharField(max_length=100)
     description = models.CharField(max_length=1000)
 
@@ -43,5 +43,3 @@ class Character(models.Model):
     emblem_background = models.CharField(max_length=500)
     race_type = models.ForeignKey(Race, on_delete=models.CASCADE)
     class_type = models.ForeignKey(Class, on_delete=models.CASCADE)
-
-    
