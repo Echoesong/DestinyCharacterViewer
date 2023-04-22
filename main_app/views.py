@@ -67,6 +67,7 @@ def bungie_callback(request):
         
     }
     response = requests.post(settings.BUNGIE_TOKEN_URL, data=data)
+    print(response)
     token_data = response.json()
     membership_id = token_data["membership_id"]
     bearer = token_data['token_type']

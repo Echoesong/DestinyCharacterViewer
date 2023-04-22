@@ -1,0 +1,17 @@
+{% extends 'base.html'%}
+{%block content%}
+
+{% for character in characters %}
+<div>
+    <div>{{ character.light }}</div>
+    <div>{{ character.last_played }}</div>
+   
+</div>
+{% endfor %}
+
+
+
+
+<a href="" class="button is-primary is-large">Create a new loadout</a>
+
+{% endblock%}
