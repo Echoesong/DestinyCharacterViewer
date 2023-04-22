@@ -2,16 +2,19 @@
 {%block content%}
 
 {% for character in characters %}
-<div>
+<div class-"column">
     <div>{{ character.light }}</div>
+    <div>{{ character.total_minutes }}</div>
+    <div>{{ character.session_minutes }}</div>
     <div>{{ character.last_played }}</div>
+    <div>{{ character.race_type }}</div>
+    <div>{{ character.class_type }}</div>
+    
+    <img src="http://www.bungie.net{{character.emblem_icon}}">
+    <img src="http://www.bungie.net{{character.emblem_background}}">
+    
    
 </div>
 {% endfor %}
-
-
-
-
-<a href="" class="button is-primary is-large">Create a new loadout</a>
 
 {% endblock%}
