@@ -33,7 +33,7 @@ class Profile(models.Model):
         return f"belongs to {self.user}"
    
      
- class Race(models.Model):
+class Race(models.Model):
     name = models.CharField(max_length=100)
     description = models.CharField(max_length=1000)
 
