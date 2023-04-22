@@ -94,8 +94,8 @@ def gatheringdata(request):
     class3 = Class.objects.get(id=3)
 
     user_profile = Profile.objects.get(user=request.user)
-    destiny2_membership_id = user_profile['destiny2_memebership_id']
-    token = user_profile['access_token']
+    destiny2_membership_id = user_profile.destiny2_membership_id
+    token = user_profile.access_token
 
     response3 = requests.get(f'https://www.bungie.net/Platform/Destiny2/3/Profile/{destiny2_membership_id}', headers={'x-api-key': settings.BUNGIE_API_KEY, 'Authorization': f'Bearer {token}'}, params={'components': 'characters'})
       
@@ -137,7 +137,7 @@ def gatheringdata(request):
 
     print('Request resolved')
     # Instead of redirecting to home, chain this request with the request to get destinyMembershipId
-    return render(request, 'gatheringdata')
+    return render(request, 'gatheringdata.html')
 
 
 @login_required
