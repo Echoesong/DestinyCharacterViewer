@@ -44,13 +44,7 @@ def bungie_auth(request):
   return HttpResponseRedirect(auth_url)
 
 def bungie_callback(request):
-    race1 = Race.objects.get(id=1)
-    race2 = Race.objects.get(id=2)
-    race3 = Race.objects.get(id=3)
-
-    class1 = Class.objects.get(id=1)
-    class2 = Class.objects.get(id=2)
-    class3 = Class.objects.get(id=3)
+    
 
     print('Bungie callback')
     code = request.GET.get('code')
@@ -67,7 +61,6 @@ def bungie_callback(request):
         
     }
     response = requests.post(settings.BUNGIE_TOKEN_URL, data=data)
-    print(response)
     token_data = response.json()
     membership_id = token_data["membership_id"]
     bearer = token_data['token_type']
@@ -83,39 +76,49 @@ def bungie_callback(request):
     Profile.objects.create(
        user=request.user, 
        access_token=token_data['access_token'], 
-       token_type=token_data['token_type'], 
+       token_type=bearer, 
        expires_in=token_data['expires_in'], 
        membership_id=token_data['membership_id'], 
        destiny2_membership_id=destiny2_membership_id)
+    print('Request resolved')
+    # Instead of redirecting to home, chain this request with the request to get destinyMembershipId
+    return redirect('gatheringdata')
     
-    
+def gatheringdata(request):
+    race1 = Race.objects.get(id=1)
+    race2 = Race.objects.get(id=2)
+    race3 = Race.objects.get(id=3)
+
+    class1 = Class.objects.get(id=1)
+    class2 = Class.objects.get(id=2)
+    class3 = Class.objects.get(id=3)
+
+    user_profile = Profile.objects.get(user=request.user)
+    destiny2_membership_id = user_profile.destiny2_membership_id
+    token = user_profile.access_token
 
     response3 = requests.get(f'https://www.bungie.net/Platform/Destiny2/3/Profile/{destiny2_membership_id}', headers={'x-api-key': settings.BUNGIE_API_KEY, 'Authorization': f'Bearer {token}'}, params={'components': 'characters'})
-    
+      
     parsed = response3.json()
     characters = parsed['Response']['characters']['data']
     character_id_list = characters.keys()
 
-    
 
     for key in character_id_list:
         character_data = characters[key]
         if character_data['raceType'] == 0:
-           character_race = race1
+          character_race = race1
         elif character_data['raceType'] == 1:
-           character_race = race2
+          character_race = race2
         elif character_data['raceType'] == 2:
-           character_race = race3
+          character_race = race3
 
         if character_data['classType'] == 0:
-           character_class = class1
+          character_class = class1
         elif character_data['classType'] == 1:
-           character_class = class2
+          character_class = class2
         elif character_data['classType'] == 2:
-           character_class = class3
-
-
-
+          character_class = class3
 
         Character.objects.create(
             user = request.user,
@@ -130,14 +133,11 @@ def bungie_callback(request):
 
         )
 
-        
-
-
-    
+      
 
     print('Request resolved')
     # Instead of redirecting to home, chain this request with the request to get destinyMembershipId
-    return redirect('home')
+    return render(request, 'gatheringdata.html')
 
 
 @login_required
@@ -146,15 +146,9 @@ def profile(request):
   return render(request, 'registration/profile.html', {'user_profile': user_profile})
 
 
-# def characters_create(request):
-#   # NOTE: 
-#   user_profile = Profile.objects.filter(user=request.user)
-  
-#   response = request.GET.get('https://www.bungie.net/Platform/Destiny2/3/Profile/{user_profile['membership_id']}/LinkedProfiles')
-#   pass
 
-# def characters_index(request):
-   
-#    characters = Character.objects.filter(user=request.user)
+def index_characters(request):
+   characters = Character.objects.filter(user=request.user)
 
-#    return render(request, 'characters/index.html', {'characters': characters})
+   return render(request, 'characters/index.html', {'characters': characters})
+

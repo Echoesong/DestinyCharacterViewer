@@ -1,0 +1,1 @@
+# From base template:  <a href="{% url 'characters' %}" class="navbar-item">Characters</a>
