@@ -1,5 +1,6 @@
 from django.urls import path, include 
 from . import views
+from django.contrib.auth.views import LogoutView
 
 urlpatterns = [
     path('', views.home, name='home'),
@@ -8,6 +9,7 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     path('bungie_auth/', views.bungie_auth, name='bungie_auth'),
     path('callback/', views.bungie_callback, name='bungie_callback' ),
+    path('logout/', LogoutView.as_view(), name='logout')
     # path('characters/', views.characters_index, name='characters_index'),
     # path('characters/create/', views.CharacterCreate, name='characters_create')
 ]
