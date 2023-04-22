@@ -10,7 +10,8 @@ urlpatterns = [
     path('bungie_auth/', views.bungie_auth, name='bungie_auth'),
     path('callback/', views.bungie_callback, name='bungie_callback' ),
     path('logout/', LogoutView.as_view(), name='logout'),
-    path('gatheringdata/', views.gatheringdata, name='gatheringdata')
+    path('gatheringdata/', views.gatheringdata, name='gatheringdata'),
+    path('characters/', views.index_characters, name='index_characters')
     
  
 ]
