@@ -27,7 +27,7 @@
 
     <div class="navbar-menu">
     {% if user.is_authenticated %}
-    
+    <a href="{% url 'characters' %}" class="navbar-item">Characters</a>
    
     {% else %}
 

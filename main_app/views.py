@@ -146,3 +146,9 @@ def profile(request):
   return render(request, 'registration/profile.html', {'user_profile': user_profile})
 
 
+
+def index_characters(request):
+   characters = Character.objects.filter(user=request.user)
+
+   return render(request, 'characters/index.html', {'characters': characters})
+
