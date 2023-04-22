@@ -11,7 +11,8 @@ urlpatterns = [
     path('callback/', views.bungie_callback, name='bungie_callback' ),
     path('logout/', LogoutView.as_view(), name='logout'),
     path('gatheringdata/', views.gatheringdata, name='gatheringdata'),
-    path('characters/', views.index_characters, name='index_characters')
+    path('characters/', views.index_characters, name='index_characters'),
+    path('characters/<int:pk>/delete/', views.CharacterDelete.as_view(), name='delete_character')
     
  
 ]

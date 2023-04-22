@@ -12,6 +12,8 @@
     
     <img src="http://www.bungie.net{{character.emblem_icon}}">
     <img src="http://www.bungie.net{{character.emblem_background}}">
+
+    <a href="{% url 'delete_character' character.id %}">Delete</a>
     
 </div>
 {% endfor %}
