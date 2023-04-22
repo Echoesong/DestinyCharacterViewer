@@ -9,7 +9,8 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     path('bungie_auth/', views.bungie_auth, name='bungie_auth'),
     path('callback/', views.bungie_callback, name='bungie_callback' ),
-    path('logout/', LogoutView.as_view(), name='logout')
-    # path('characters/', views.characters_index, name='characters_index'),
-    # path('characters/create/', views.CharacterCreate, name='characters_create')
+    path('logout/', LogoutView.as_view(), name='logout'),
+    path('gatheringdata/', views.gatheringdata, name='gatheringdata')
+    
+ 
 ]
