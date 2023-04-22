@@ -8,6 +8,7 @@ import uuid
 import requests
 from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
+from django.views.generic.edit import DeleteView
 from .models import *
 
 # Create your views here.
@@ -152,3 +153,7 @@ def index_characters(request):
 
    return render(request, 'characters/index.html', {'characters': characters})
 
+
+class CharacterDelete(DeleteView):
+    model = Character
+    success_url = '/characters'
