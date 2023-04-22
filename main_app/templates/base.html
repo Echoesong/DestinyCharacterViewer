@@ -30,9 +30,12 @@
     <a href="{% url 'index_characters' %}" class="navbar-item">Characters</a>
    
     {% else %}
-
+    <div class="navbar-end">
     <a href="{% url 'signup' %}" class="navbar-item">Sign Up</a>
+
+    
     <a href="{% url 'login' %}" class="navbar-item">Log In</a>
+    </div>
 
     {% endif %}
 

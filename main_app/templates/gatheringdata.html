@@ -2,5 +2,16 @@
 {%block content%}
 
 <h1>Hang tight, syncing your Destiny 2 data</h1>
+<progress class="progress is-medium" max="100">15%</progress>
+
+<a class="button is-large is-danger" id="target" style="display: none;" href="{% url 'index_characters'%}">View your character info</a>
+<script>
+    function showButton(){
+        console.log('showButton called')
+        const button = document.getElementById("target")
+        button.style = "display: inline-block;"
+    }
+    setTimeout(showButton, 10000)
+</script>
 
 {% endblock%}
