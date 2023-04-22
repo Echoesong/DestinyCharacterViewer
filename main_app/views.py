@@ -35,6 +35,8 @@ def signup(request):
   context = {'form': form, 'error_message': error_message}
   return render(request, 'registration/signup.html', context)
 
+
+
 def bungie_auth(request):
   state = uuid.uuid4()
   request.session['bungie_auth_state'] = str(state)
