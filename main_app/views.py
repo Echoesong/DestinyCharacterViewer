@@ -74,16 +74,30 @@ def bungie_callback(request):
     destiny2_data = response2.json()
     # NOTE: Eventually need to handle edge case of when existing user tries to connect
     destiny2_membership_id = destiny2_data['Response']['profiles'][0]['membershipId']
-    Profile.objects.create(
-       user=request.user, 
-       access_token=token_data['access_token'], 
-       token_type=bearer, 
-       expires_in=token_data['expires_in'], 
-       membership_id=token_data['membership_id'], 
-       destiny2_membership_id=destiny2_membership_id)
-    print('Request resolved')
-    # Instead of redirecting to home, chain this request with the request to get destinyMembershipId
+
+    existing_profile = Profile.objects.filter(user=request.user)
+    if not existing_profile :
+       
+      Profile.objects.create(
+        user=request.user, 
+        access_token=token_data['access_token'], 
+        token_type=bearer, 
+        expires_in=token_data['expires_in'], 
+        membership_id=token_data['membership_id'], 
+        destiny2_membership_id=destiny2_membership_id)
+      print('Request resolved')
+      # Instead of redirecting to home, chain this request with the request to get destinyMembershipId
+    else:
+       existing_profile.update(
+        access_token=token_data['access_token'], 
+        token_type=bearer, 
+        expires_in=token_data['expires_in'], 
+        membership_id=token_data['membership_id'], 
+        destiny2_membership_id=destiny2_membership_id
+        )
+
     return redirect('gatheringdata')
+    
     
 def gatheringdata(request):
     race1 = Race.objects.get(id=1)
@@ -105,34 +119,38 @@ def gatheringdata(request):
     character_id_list = characters.keys()
 
 
+
+    existing_characters = Character.objects.filter(user=request.user)
+    if existing_characters:
+        existing_characters.delete()
+      
     for key in character_id_list:
-        character_data = characters[key]
-        if character_data['raceType'] == 0:
-          character_race = race1
-        elif character_data['raceType'] == 1:
-          character_race = race2
-        elif character_data['raceType'] == 2:
-          character_race = race3
+            character_data = characters[key]
+            if character_data['raceType'] == 0:
+              character_race = race1
+            elif character_data['raceType'] == 1:
+              character_race = race2
+            elif character_data['raceType'] == 2:
+              character_race = race3
 
-        if character_data['classType'] == 0:
-          character_class = class1
-        elif character_data['classType'] == 1:
-          character_class = class2
-        elif character_data['classType'] == 2:
-          character_class = class3
+            if character_data['classType'] == 0:
+              character_class = class1
+            elif character_data['classType'] == 1:
+              character_class = class2
+            elif character_data['classType'] == 2:
+              character_class = class3
+            Character.objects.create(
+                user = request.user,
+                light = character_data['light'],
+                total_minutes = character_data['minutesPlayedTotal'],
+                session_minutes = character_data['minutesPlayedThisSession'],
+                last_played = character_data['dateLastPlayed'],
+                emblem_icon = character_data['emblemPath'],
+                emblem_background = character_data['emblemBackgroundPath'],
+                race_type = character_race,
+                class_type = character_class
 
-        Character.objects.create(
-            user = request.user,
-            light = character_data['light'],
-            total_minutes = character_data['minutesPlayedTotal'],
-            session_minutes = character_data['minutesPlayedThisSession'],
-            last_played = character_data['dateLastPlayed'],
-            emblem_icon = character_data['emblemPath'],
-            emblem_background = character_data['emblemBackgroundPath'],
-            race_type = character_race,
-            class_type = character_class
-
-        )
+            )  
 
       
 
