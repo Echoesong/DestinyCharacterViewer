@@ -1,7 +1,7 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="has-navbar-fixed-top">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,8 +13,8 @@
 
 
 </head>
-
-<nav class="navbar" role="navigation" aria-label="main navigation">
+<body>
+  <nav class="navbar is-dark is-fixed-top" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
         <a class="navbar-item" href="{% url 'home' %}">Home</a>
     
@@ -23,36 +23,39 @@
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
         </a>
-      </div>
+    </div>
 
     <div class="navbar-menu">
+      <div class="navbar-start">
     {% if user.is_authenticated %}
-    <a href="{% url 'index_characters' %}" class="navbar-item">Characters</a>
-   
+          <a href="{% url 'index_characters' %}" class="navbar-item">Characters</a>
     {% else %}
-    <div class="navbar-end">
-    <a href="{% url 'signup' %}" class="navbar-item">Sign Up</a>
-
-    
-    <a href="{% url 'login' %}" class="navbar-item">Log In</a>
-    </div>
+   
+      </div>
 
     {% endif %}
 
-     </div>
+     
     
-     <div class="navbar-end">
+     
      {% if user.is_authenticated %}
+     <div class="navbar-end">
      <a href="{% url 'profile' %}" class="navbar-item">View profile</a>
      <a href="{% url 'logout' %}" class="navbar-item">Logout</a>
-     {% else %}
-     {% endif %} 
     </div>
-
+     {% else %}
+     <div class="navbar-end">
+     <a href="{% url 'signup' %}" class="navbar-item">Sign Up</a>    
+     <a href="{% url 'login' %}" class="navbar-item">Log In</a>
+    </div>
+     {% endif %} 
+      
+    </div>
 </nav>
 
-<body>
+
     {% block content%}
     {% endblock %}
+
 </body>
 </html>
