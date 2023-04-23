@@ -1,15 +1,26 @@
 {% extends 'base.html'%}
 {%block content%}
+<section class="section">
 
-<h1>Hang tight, syncing your Destiny 2 data</h1>
-<progress class="progress is-medium" max="100">15%</progress>
+<div class="container has-text-centered">
+<h1 class="title is-2">Hang tight, syncing your Destiny 2 data</h1>
+<progress class="progress is-medium" max="100" id="progBar">15%</progress>
 
 <a class="button is-large is-danger" id="target" style="display: none;" href="{% url 'index_characters'%}">View your character info</a>
+
+</div>
+
+</section>
+
+
+
 <script>
     function showButton(){
         console.log('showButton called')
         const button = document.getElementById("target")
+        const progBar = document.getElementById("progBar")
         button.style = "display: inline-block;"
+        progBar.style = "display: none;"
     }
     setTimeout(showButton, 10000)
 </script>

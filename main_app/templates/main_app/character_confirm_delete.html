@@ -1,13 +1,22 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <h1>Delete Character</h1>
+  
+<section class="section">
+<div class="container has-text-centered">
+    <h1 class="title is-2">Delete Character</h1>
 
-  <h4>Are you sure you want to delete this character?</h4>
+  <h4 class="subtitle is-3">Are you sure you want to delete this character?</h4>
+</div>
 
+<div class="columns">
+    <div class="column has-text-centered mt-3">
   <form action="" method="POST">
     {% csrf_token %}
     <input type="submit" value="Yes - Delete!" class="button is-danger">
     <a href="{% url 'index_characters' %}" class="button is-success">Cancel</a>
   </form>
+</div>
+</div>
+</section>
 {% endblock %}

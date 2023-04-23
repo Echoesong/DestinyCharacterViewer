@@ -40,7 +40,7 @@
      
      {% if user.is_authenticated %}
      <div class="navbar-end">
-     <a href="{% url 'profile' %}" class="navbar-item">View profile</a>
+     <a href="{% url 'bungie_auth' %}" class="navbar-item">Sync/Update Destiny 2 info</a>
      <a href="{% url 'logout' %}" class="navbar-item">Logout</a>
     </div>
      {% else %}
