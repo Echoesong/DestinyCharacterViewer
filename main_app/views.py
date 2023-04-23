@@ -85,7 +85,6 @@ def bungie_callback(request):
         expires_in=token_data['expires_in'], 
         membership_id=token_data['membership_id'], 
         destiny2_membership_id=destiny2_membership_id)
-      print('Request resolved')
       # Instead of redirecting to home, chain this request with the request to get destinyMembershipId
     else:
        existing_profile.update(
@@ -152,9 +151,6 @@ def gatheringdata(request):
 
             )  
 
-      
-
-    print('Request resolved')
     # Instead of redirecting to home, chain this request with the request to get destinyMembershipId
     return render(request, 'gatheringdata.html')
 
