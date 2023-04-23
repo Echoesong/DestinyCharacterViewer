@@ -8,28 +8,36 @@
 <section class="container mt-5">
 <div class="columns">
 {% for character in characters %}
-<div class-"column">
-    <div class="container">
-        <figure class="image is-128x128 mx-auto">
-        <img src="http://www.bungie.net{{character.emblem_icon}}">
-        </figure>
+<div class="column">
+<div class-"card">
+    <div class="card-image">
+    <figure class="image is-128x128 mx-auto">
+    <img src="http://www.bungie.net{{character.emblem_icon}}">
+    </figure>
+</div>
 
-    <div><p class="is-uppercase has-text-left">Light level: </p><p class="has-text-right has-text-weight-semibold">{{ character.light }}</p></div>
-    <div><p class="is-uppercase has-text-left">Total minutes played on character: </p><p class="has-text-right has-text-weight-semibold">{{ character.total_minutes }}</p></div>
-    <div><p class="is-uppercase has-text-left">Minutes played on character last session: </p><p class="has-text-right has-text-weight-semibold">{{ character.session_minutes }}</p></div>
-    <div><p class="is-uppercase has-text-left">Date last played: </p><p class="has-text-right has-text-weight-semibold">{{ character.last_played }}</p></div>
-    <div><p class="is-uppercase has-text-left">Character race: </p><p class="is-uppercase has-text-right has-text-weight-semibold">{{ character.race_type }}</p></div>
-    <div><p class="is-uppercase has-text-left">Character class: </p><p class="is-uppercase has-text-right has-text-weight-semibold">{{ character.class_type }}</p></div>
+    <div class="card-content">
+
+    <p class="is-uppercase has-text-left">Light level: </p><p class="has-text-right has-text-weight-semibold">{{ character.light }}</p>
+    <p class="is-uppercase has-text-left">Total minutes played on character: </p><p class="has-text-right has-text-weight-semibold">{{ character.total_minutes }}</p>
+    <p class="is-uppercase has-text-left">Minutes played on character last session: </p><p class="has-text-right has-text-weight-semibold">{{ character.session_minutes }}</p>
+    <p class="is-uppercase has-text-left">Date last played: </p><p class="has-text-right has-text-weight-semibold">{{ character.last_played }}</p>
+    <p class="is-uppercase has-text-left">Character race: </p><p class="is-uppercase has-text-right has-text-weight-semibold">{{ character.race_type }}</p>
+    <p class="is-uppercase has-text-left">Character class: </p><p class="is-uppercase has-text-right has-text-weight-semibold">{{ character.class_type }}</p>
     
     
     
 
-    <a class="button is-link is-large" href="{% url 'delete_character' character.id %}">Delete</a>
-    </div>
+</div>
+<div class="card-footer">
+    <a class="button has-background-primary-dark has-text-white-ter is-fullwidth is-rounded" href="{% url 'delete_character' character.id %}">Delete</a>
+</div>
     
+</div>
 </div>
 {% endfor %}
 </div>
+
 </section>
 </section>
 {% endblock%}

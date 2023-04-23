@@ -129,6 +129,19 @@ USE_I18N = True
 
 USE_TZ = True
 
+# Bulma settings
+
+BULMA_SETTINGS = {
+    "use_minified": True,
+    "variables": {
+    "link": "#4b6fb9ff",
+    "danger": "#5e4bb9ff",
+    "success": "#4ba6b9ff",    
+    "background": "#e0dbe6ff",
+    }
+
+}
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
@@ -149,6 +162,7 @@ LOGOUT_REDIRECT_URL = '/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
 
 
 import django_heroku
