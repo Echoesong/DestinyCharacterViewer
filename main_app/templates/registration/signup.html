@@ -1,14 +1,19 @@
 {% extends 'base.html'%}
 {%block content%}
 
-<h1>Sign Up</h1>
+<section class="section has-text-centered">
+  <div class="box mx-auto has-text-left">
 
-<p class="red-text">{{ error_message }}</p>
+<h1 class="title is-2">Sign Up</h1>
+
+<p class="is-danger">{{ error_message }}</p>
 
 <form method="POST" action="{% url 'signup' %}">
   {% csrf_token %}
   {{ form.as_p }}
-  <input type="submit" class="btn" value="Sign Up">
+  <input type="submit" class="button has-background-primary-dark has-text-white-ter" value="Sign Up">
 </form>
+</div>
+</section>
 
 {% endblock%}
