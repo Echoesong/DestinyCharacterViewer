@@ -18,7 +18,7 @@ Welcome to Destiny Character Viewer, a user-friendly app designed to help users 
 
 ## Getting Started
 
-Click [here](<url_here>) to launch the web application
+Click [here](https://destiny-loadout-manager.herokuapp.com/) to launch the web application
 
 Demo Accounts:
 demo_user1
@@ -27,9 +27,9 @@ demo_user3
 
 password = welovedestiny
 
-View our Trello planning board [here](<url_here>)
+View our Trello planning board [here](https://trello.com/invite/b/U9IQPeF4/ATTI3ab0e68afe23c87e843daba082a7168f4113EA9D/destiny-loadout-manager)
 
-View our original planning document [here](<url_here>)
+View our original planning document [here](https://lucid.app/lucidchart/491e24d0-0bc6-4c50-a63e-b9896ba0610c/edit?viewport_loc=-91%2C152%2C1458%2C1586%2C0_0&invitationId=inv_07dd661f-67d8-481a-9bb7-0ec597e32a9f)
 
 ## Technologies Used
 
