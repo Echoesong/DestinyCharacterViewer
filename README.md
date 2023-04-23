@@ -20,6 +20,13 @@ Welcome to Destiny Character Viewer, a user-friendly app designed to help users 
 
 Click [here](<url_here>) to launch the web application
 
+Demo Accounts:
+demo_user1
+demo_user2
+demo_user3
+
+password = welovedestiny
+
 View our Trello planning board [here](<url_here>)
 
 View our original planning document [here](<url_here>)
