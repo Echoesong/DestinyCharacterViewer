@@ -11,7 +11,7 @@ Welcome to Destiny Character Viewer, a user-friendly app designed to help users 
 
 ## Screenshots
 
-[Splash page](<url_here>)
+[Splash page](https://i.imgur.com/LTF4aE5)
 [Create User](<url_here>)
 [loadingdata](<url_here>)
 [Index_characters](<url_here>)
