@@ -2,6 +2,8 @@
 
 Welcome to Destiny Character Viewer, a user-friendly app designed to help users view their character info utilizing the Bungie API. This app allows users to create an account, sync their account with the Bungie API, and see a list of their characters in a clean and organized interface. Additionally, users can delete characters from the app database without affecting the data stored in the Bungie API.
 
+Click [here](https://destiny-loadout-manager.herokuapp.com/) to launch the web application
+
 ## Features
 
 * Create an account in My Character Manager
