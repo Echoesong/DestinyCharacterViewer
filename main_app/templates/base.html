@@ -25,7 +25,7 @@
         </a>
     </div>
 
-    <div class="navbar-menu">
+    <div class="navbar-menu" id="navbar-target">
       <div class="navbar-start">
     {% if user.is_authenticated %}
           <a href="{% url 'index_characters' %}" class="navbar-item">Characters</a>
@@ -58,4 +58,17 @@
     {% endblock %}
 
 </body>
+
+<script>
+  const navbarBurgerEl = document.querySelector('.navbar-burger')
+  const navbarMenuEl = document.getElementById('navbar-target')
+
+  function handleNavBurger(evt){
+    navbarMenuEl.classList.toggle('is-active')
+    navbarBurgerEl.classList.toggle('is-active')
+  }
+
+  navbarBurgerEl.addEventListener('click', handleNavBurger)
+
+</script>
 </html>
